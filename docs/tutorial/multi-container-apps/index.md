@@ -49,17 +49,6 @@ For now, we will create the network first and attach the MySQL container at star
         mysql:8.0
     ```
 
-    If you are using PowerShell then use this command.
-
-    ```powershell
-    docker run -d `
-        --network todo-app --network-alias mysql `
-        -v todo-mysql-data:/var/lib/mysql `
-        -e MYSQL_ROOT_PASSWORD=secret `
-        -e MYSQL_DATABASE=todos `
-        mysql:8.0
-    ```
-
     You'll also see we specified the `--network-alias` flag. We'll come back to that in just a moment.
 
     !!! info "Pro-tip"
@@ -194,20 +183,6 @@ With all of that explained, let's start our dev-ready container!
       sh -c "yarn install && yarn run dev"
     ```
 
-    If you are using PowerShell then use this command.
-
-    ```powershell hl_lines="3 4 5 6 7"
-    docker run -dp 3000:3000 `
-      -w /app -v "$(pwd):/app" `
-      --network todo-app `
-      -e MYSQL_HOST=mysql `
-      -e MYSQL_USER=root `
-      -e MYSQL_PASSWORD=secret `
-      -e MYSQL_DB=todos `
-      node:18-alpine `
-      sh -c "yarn install && yarn run dev"
-    ```
-
 1. If we look at the logs for the container (`docker logs <container-id>`), we should see a message indicating it's
    using the mysql database.
 
@@ -245,11 +220,6 @@ With all of that explained, let's start our dev-ready container!
     ```
 
     Obviously, your table will look different because it has your items. But, you should see them stored there!
-
-If you take a quick look at the Docker Dashboard, you'll see that we have two app containers running. But, there's
-no real indication that they are grouped together in a single app. We'll see how to make that better shortly!
-
-![Docker Dashboard showing two ungrouped app containers](dashboard-multi-container-app.png)
 
 ## Recap
 

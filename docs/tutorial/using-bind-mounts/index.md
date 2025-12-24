@@ -51,15 +51,6 @@ So, let's do it!
         sh -c "yarn install && yarn run dev"
     ```
 
-    If you are using PowerShell then use this command.
-
-    ```powershell
-    docker run -dp 3000:3000 `
-        -w /app -v "$(pwd):/app" `
-        node:18-alpine `
-        sh -c "yarn install && yarn run dev"
-    ```
-
     - `-dp 3000:3000` - same as before. Run in detached (background) mode and create a port mapping
     - `-w /app` - sets the container's present working directory where the command will run from
     - `-v "$(pwd):/app"` - bind mount (link) the host's present `getting-started/app` directory to the container's `/app` directory. Note: Docker requires absolute paths for binding mounts, so in this example we use `pwd` for printing the absolute path of the working directory, i.e. the `app` directory, instead of typing it manually

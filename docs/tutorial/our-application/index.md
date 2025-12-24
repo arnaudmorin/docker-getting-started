@@ -17,15 +17,19 @@ Before we can run the application, we need to get the application source code on
 our machine. For real projects, you will typically clone the repo. But, for this tutorial,
 we have created a ZIP file containing the application.
 
-1. [Download the ZIP](/assets/app.zip). Open the ZIP file and make sure you extract the
-    contents.
+1. [Download the ZIP](/assets/app.zip) on your server (e.g. using `wget`).
 
-1. Once extracted, use your favorite code editor to open the project. If you're in need of
-    an editor, you can use [Visual Studio Code](https://code.visualstudio.com/). You should
-    see the `package.json` and two subdirectories (`src` and `spec`).
+1. Unzip and enter the folder:
+    ```bash
+    unzip app.zip
+    cd app
+    ```
 
-    ![Screenshot of Visual Studio Code opened with the app loaded](ide-screenshot.png){: style="width:650px;margin-top:20px;"}
-    {: .text-center }
+1. You should see the files:
+    ```bash
+    $ ls
+    package.json  spec  src  yarn.lock
+    ```
 
 ## Building the App's Container Image
 
@@ -83,7 +87,7 @@ command (remember that from earlier?).
     background) and creating a mapping between the host's port 3000 to the container's port 3000.
     Without the port mapping, we wouldn't be able to access the application.
 
-1. After a few seconds, open your web browser to [http://localhost:3000](http://localhost:3000).
+1. After a few seconds, open your web browser to your server on port 3000.
     You should see our app!
 
     ![Empty Todo List](todo-list-empty.png){: style="width:450px;margin-top:20px;"}
@@ -97,11 +101,18 @@ command (remember that from earlier?).
 At this point, you should have a running todo list manager with a few items, all built by you!
 Now, let's make a few changes and learn about managing our containers.
 
-If you take a quick look at the Docker Dashboard, you should see your two containers running now 
+If you take a quick look at the Docker container list, you should see your two containers running now
 (this tutorial and your freshly launched app container)!
 
-![Docker Dashboard with tutorial and app containers running](dashboard-two-containers.png)
+```bash
+docker ps
+```
 
+```
+CONTAINER ID   IMAGE                    COMMAND                  CREATED         STATUS         PORTS                                         NAMES
+33097d45e542   getting-started          "docker-entrypoint.s…"   5 minutes ago   Up 5 minutes   0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp   amazing_hawking
+0f19c98a23a2   docker/getting-started   "/docker-entrypoint.…"   8 minutes ago   Up 8 minutes   0.0.0.0:80->80/tcp, [::]:80->80/tcp           determined_chebyshev
+```
 
 ## Recap
 

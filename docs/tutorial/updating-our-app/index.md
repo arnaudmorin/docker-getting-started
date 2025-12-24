@@ -47,7 +47,7 @@ To remove a container, it first needs to be stopped. Once it has stopped, it can
 ways that we can remove the old container. Feel free to choose the path that you're most comfortable with.
 
 
-### Removing a container using the CLI
+### Removing a container
 
 1. Get the ID of the container by using the `docker ps` command.
 
@@ -72,21 +72,6 @@ ways that we can remove the old container. Feel free to choose the path that you
     You can stop and remove a container in a single command by adding the "force" flag
     to the `docker rm` command. For example: `docker rm -f <the-container-id>`
 
-### Removing a container using the Docker Dashboard
-
-If you open the Docker dashboard, you can remove a container with two clicks! It's certainly
-much easier than having to look up the container ID and remove it.
-
-1. With the dashboard opened, hover over the app container and you'll see a collection of action
-    buttons appear on the right.
-
-1. Click on the trash can icon to delete the container. 
-
-1. Confirm the removal and you're done!
-
-![Docker Dashboard - removing a container](dashboard-removing-container.png)
-
-
 ### Starting our updated app container
 
 1. Now, start your updated app.
@@ -95,7 +80,7 @@ much easier than having to look up the container ID and remove it.
     docker run -dp 3000:3000 getting-started
     ```
 
-1. Refresh your browser on [http://localhost:3000](http://localhost:3000) and you should see your updated help text!
+1. Refresh your browser on and you should see your updated help text!
 
 ![Updated application with updated empty text](todo-list-updated-empty-text.png){: style="width:55%" }
 {: .text-center }

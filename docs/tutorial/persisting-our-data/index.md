@@ -24,19 +24,7 @@ What you'll see is that the files created in one container aren't available in a
     commands (why we have the `&&`). The first portion picks a single random number and writes
     it to `/data.txt`. The second command is simply watching a file to keep the container running.
 
-1. Validate we can see the output by `exec`'ing into the container. To do so, open the Dashboard, find your Ubuntu container, click on the "triple dot" menu to get additional actions, and click on the "Open in terminal" menu item.
-
-    ![Dashboard open CLI into ubuntu container](dashboard-open-cli-ubuntu.png){: style=width:75% }
-{: .text-center }
-
-    You will see a terminal that is running a shell in the ubuntu container. Run the following command to see the content of the `/data.txt` file. Close this terminal afterwards again.
-
-    ```bash
-    cat /data.txt
-    ```
-
-    If you prefer the command line you can use the `docker exec` command to do the same. You need to get the
-   container's ID (use `docker ps` to get it) and get the content with the following command.
+1. Validate we can see the output by `exec`'ing into the container. To do so, find your Ubuntu container by running `docker ps` and then `docker exec`:
 
     ```bash
     docker exec <container-id> cat /data.txt
@@ -94,7 +82,7 @@ Every time you use the volume, Docker will make sure the correct data is provide
     docker volume create todo-db
     ```
 
-1. Stop the todo app container once again in the Dashboard (or with `docker rm -f <container-id>`), as it is still running without using the persistent volume.
+1. Stop the todo app container once again with `docker rm -f <container-id>`, as it is still running without using the persistent volume.
 
 1. Start the todo app container, but add the `-v` flag to specify a volume mount. We will use the named volume and mount
    it to `/etc/todos`, which will capture all files created at the path.
@@ -146,11 +134,6 @@ docker volume inspect todo-db
 
 The `Mountpoint` is the actual location on the disk where the data is stored. Note that on most machines, you will
 need to have root access to access this directory from the host. But, that's where it is!
-
-!!! info "Accessing Volume data directly on Docker Desktop"
-    While running in Docker Desktop, the Docker commands are actually running inside a small VM on your machine.
-    If you wanted to look at the actual contents of the Mountpoint directory, you would need to first get inside
-    of the VM.
 
 ## Recap
 

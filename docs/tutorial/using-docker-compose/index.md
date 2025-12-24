@@ -257,31 +257,14 @@ Now that we have our `docker-compose.yml` file, we can start it up!
 
 1. At this point, you should be able to open your app and see it running. And hey! We're down to a single command!
 
-## Seeing our App Stack in Docker Dashboard
-
-If we look at the Docker Dashboard, we'll see that there is a group named **app**. This is the "project name" from Docker
-Compose and used to group the containers together. By default, the project name is simply the name of the directory that the
-`docker-compose.yml` was located in.
-
-![Docker Dashboard with app project](dashboard-app-project-collapsed.png)
-
-If you twirl down the app, you will see the two containers we defined in the compose file. The names are also a little
-more descriptive, as they follow the pattern of `<project-name>_<service-name>_<replica-number>`. So, it's very easy to
-quickly see what container is our app and which container is the mysql database.
-
-![Docker Dashboard with app project expanded](dashboard-app-project-expanded.png)
-
-
 ## Tearing it All Down
 
-When you're ready to tear it all down, simply run `docker compose down` or hit the trash can on the Docker Dashboard 
+When you're ready to tear it all down, simply run `docker compose down`
 for the entire app. The containers will stop and the network will be removed.
 
 !!! warning "Removing Volumes"
     By default, named volumes in your compose file are NOT removed when running `docker compose down`. If you want to
     remove the volumes, you will need to add the `--volumes` flag.
-
-    The Docker Dashboard does _not_ remove volumes when you delete the app stack.
 
 Once torn down, you can switch to another project, run `docker compose up` and be ready to contribute to that project! It really
 doesn't get much simpler than that!

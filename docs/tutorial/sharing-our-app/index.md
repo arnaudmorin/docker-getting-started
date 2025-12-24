@@ -23,15 +23,16 @@ an example command that you will need to run to push to this repo.
 ## Pushing our Image
 
 1. In the command line, try running the push command you see on Docker Hub. Note that your command
-   will be using your namespace, not "docker".
+   will be using your namespace, not "YOUR-USER-NAME".
 
     ```plaintext
-    $ docker push docker/getting-started
-    The push refers to repository [docker.io/docker/getting-started]
-    An image does not exist locally with the tag: docker/getting-started
+    $ docker push YOUR-USER-NAME/getting-started
+    Using default tag: latest
+    The push refers to repository [docker.io/YOUR-USER-NAME/getting-started]
+    tag does not exist: YOUR-USER-NAME/getting-started:latest
     ```
 
-    Why did it fail? The push command was looking for an image named docker/getting-started, but
+    Why did it fail? The push command was looking for an image named docker/getting-started using the default `latest` tag, but
     didn't find one. If you run `docker image ls`, you won't see one either.
 
     To fix this, we need to "tag" our existing image we've built to give it another name.
@@ -54,36 +55,10 @@ an example command that you will need to run to push to this repo.
     docker push YOUR-USER-NAME/getting-started
     ```
 
-## Running our Image on a New Instance
-
-Now that our image has been built and pushed into a registry, let's try running our app on a brand
-new instance that has never seen this container image! To do this, we will use Play with Docker.
-
-1. Open your browser to [Play with Docker](https://labs.play-with-docker.com/).
-
-1. Log in with your Docker Hub account.
-
-1. Once you're logged in, click on the "+ ADD NEW INSTANCE" link in the left side bar. (If you don't see it, make your browser a little wider.) After a few seconds, a terminal window will be opened in your browser.
-
-    ![Play with Docker add new instance](pwd-add-new-instance.png){: style=width:75% }
-{: .text-center }
-
-
-1. In the terminal, start your freshly pushed app.
-
-    ```bash
-    docker run -dp 3000:3000 YOUR-USER-NAME/getting-started
-    ```
-
-    You should see the image get pulled down and eventually start up!
-
-1. Click on the 3000 badge when it comes up and you should see the app with your modifications! Hooray!
-    If the 3000 badge doesn't show up, you can click on the "Open Port" button and type in 3000.
-
 ## Recap
 
-In this section, we learned how to share our images by pushing them to a registry. We then went to a
-brand new instance and were able to run the freshly pushed image. This is quite common in CI pipelines,
+In this section, we learned how to share our images by pushing them to a registry. We can now run this
+brand new image from anywhere! This is quite common in CI pipelines,
 where the pipeline will create the image and push it to a registry and then the production environment
 can use the latest version of the image.
 
